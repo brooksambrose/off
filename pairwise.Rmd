@@ -1,0 +1,54 @@
+```{r init}
+cat('\014')
+rm(list=ls())
+ec<-function(x) strsplit(x,',')[[1]]
+lintran<-function(x,s1=c(0,1),s2=c(0,1)) {a=diff(s2)/diff(s1);b=s2[1]-a*s1[1];return(a*x+b)}
+for(i in ec('magrittr,data.table,statnet,latentnet')) library(i,character.only=T)
+```
+
+```{r orig}
+o<-data.table(
+  m=sample(letters[1:15],replace = F)
+  ,s=rnorm(n = 15) %>% lintran(.,range(.),c(80,100)) %>% round()
+) %>% setorder()
+```
+
+```{r edge,results='asis'}
+e<-list()
+for(i in 1:nrow(o)) for(j in setdiff(1:nrow(o),i)) {
+  if(o[i,s]>=o[j,s]) e[[length(e)+1]]<-c(s=o[i,m],r=o[j,m])
+}
+e<-do.call(rbind,e) %>% data.table() %>% setorder()
+head(e)
+apply(e,1,function(x) cat(c(x[1],'\t',x[2],'\n'),sep=''))
+```
+
+```{r net}
+n<-network(x = e,directed = T,matrix.type='edgelist')
+plot(n)
+```
+
+```{r}
+(d<-network.density(n))
+system.time(f<-ergmm(
+	n~euclidean(d=3)
+	,verbose=3
+	,control=control.ergmm(
+		sample.size=10000
+		,burnin=30000
+		,interval=10
+	)
+))
+```
+
+```{r plot}
+z<-plot.ergmm(f,zoom.on = 1:15) #,suppress.axes = T,zoom.on = c(1,5))[,1] %>% as.vector()
+mcmc.diagnostics(f)
+#o[,`:=`(tz=lintran(z,range(z),range(s)),z=z)]
+o
+```
+
+```{r results}
+
+```
+

@@ -1,0 +1,72 @@
+```{r init, include=F}
+cat('\014')
+rm(list=ls())
+ec<-function(x) strsplit(x,',')[[1]]
+lintran<-function(x,s1=c(0,1),s2=c(0,1)) {a=diff(s2)/diff(s1);b=s2[1]-a*s1[1];return(a*x+b)}
+for(i in ec('magrittr,data.table,statnet,latentnet,BradleyTerry2')) library(i,character.only=T)
+set.seed(12345)
+```
+
+```{r links}
+l<-fread('submissions.txt')
+l<-data.table(l[1:(nrow(l)/2)],l[(1+nrow(l)/2):nrow(l)]) %>% setnames(c('name','profile','post','url'))
+l<-l[sample(.N)]
+l[,id:=make.unique(gsub('[^A-Z]','',name),sep='')]
+n=nrow(l)
+m=letters[1:n]
+l[,m:=m] %>% setkey(m)
+l
+```
+
+```{r edgelist}
+e<-combn(m,2) %>% t() %>% data.table() %>% setnames(c('s','r')) %>% setkey(s,r)
+setindex(e,'r')
+e
+```
+
+```{r permute}
+is.odd <- function(x) x %% 2 != 0
+t<-floor((n-1)/2)
+r<-rep(list(list()),n)
+c<-0
+while(length(unlist(r))<ifelse(is.odd(n),(t*n*2)-8,t*n*2)){
+  c<-c+1
+  r<-rep(list(list()),n)
+  names(r)<-m
+  for(i in m){
+    w<-which(m==i)-1
+    if(w) {x<-rbindlist(r[1:w])} else {x<-data.table(s='A',r='B') %>% setkey(s,r)}
+    for(j in 1:t){
+      k<-c(i,unlist(r[[i]])) %>% unique() %>% sort()
+      r[[i]][[j]]<-e[!x][!k][!k,on='r'][sample(.N,1)]
+    }
+    r[[i]]<-rbindlist(r[[i]])
+  }
+}
+cat('Untested pairs\n')
+s<-rbindlist(r) %>% setkey(s,r)
+r[['z']]<-e[!s]
+l<-list(l,data.table(name='Brooks Ambrose',profile='',post='',url='',id='',m='z')) %>% rbindlist() %>% setkey(m)
+l
+```
+
+```{r ballot}
+cat('\014')
+for(i in 1:length(r)) {
+  cat('\"Prepared for',l[names(r[i]),name])    
+  for(j in 1:nrow(r[[i]])) {
+    cat('\n\n##### Task',j,'#####')
+    cat('\nItem',j*2-1,l[r[[i]][j,1],c(name,'\n',url)])
+    cat('\nItem',j*2,l[r[[i]][j,2],c(name,'\n',url)])
+  }
+  cat('\n\n##### Final Project Voting','#####\n')
+  o<-setdiff(m,c(names(r[i]),unlist(r[[i]])))
+  l[o,list(name,url)] %>% apply(1,cat,sep='\n')
+  cat('\"\n',sep='')
+}
+```
+
+```{r sort-order}
+cat(l[names(r),name],sep='\n')
+```
+

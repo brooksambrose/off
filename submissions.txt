@@ -1,0 +1,29 @@
+.	@href
+Charlotte Swavola	
+Weixing Sun	https://learn.datascience.berkeley.edu/user/view.php?id=1299&course=130
+Francis Shannon	
+Cameron Bell	
+Jonah Smith	https://learn.datascience.berkeley.edu/user/view.php?id=1101&course=130
+Jay Zuniga	https://learn.datascience.berkeley.edu/user/view.php?id=1254&course=130
+Mark Gin	https://learn.datascience.berkeley.edu/user/view.php?id=1307&course=130
+Luke Doolittle	https://learn.datascience.berkeley.edu/user/view.php?id=1230&course=130
+Daniel Elkin	https://learn.datascience.berkeley.edu/user/view.php?id=1264&course=130
+Amod Ghangurde	https://learn.datascience.berkeley.edu/user/view.php?id=1320&course=130
+Prashant Sahay	https://learn.datascience.berkeley.edu/user/view.php?id=1314&course=130
+Cassandra Seney	https://learn.datascience.berkeley.edu/user/view.php?id=1316&course=130
+Heather Feinstein	https://learn.datascience.berkeley.edu/user/view.php?id=1146&course=130
+Stanimir Vichev	https://learn.datascience.berkeley.edu/user/view.php?id=1244&course=130
+Charlotte Swavola Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6222
+Weixing Sun Case Memo	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6214
+Frank Shannon Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6221
+Cameron Bell Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6220
+Jonah Smith Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6219
+Jay Zuniga HW13 proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6218
+Mark Gin Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6216
+Luke Doolittle Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6215
+Dan Elkin Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6213
+Amod Ghangurde Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6212
+Prashant Sahay Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6211
+Cassie Seney Project Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6210
+Heather Feinstein Project	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6209
+Stanimir Vichev's W13 Proposal	https://learn.datascience.berkeley.edu/mod/forum/discuss.php?d=6208
